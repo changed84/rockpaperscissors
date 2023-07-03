@@ -46,7 +46,7 @@
             let computerScore = 0;
 
             for (let round = 1; round <= 5; round++) {
-                const playerSelection = "Paper";
+                const playerSelection = window.prompt("Rock, Paper, or Scissors?");
                 const computerSelection = getComputerChoice();
                 const result = playRound(playerSelection, computerSelection);
 
