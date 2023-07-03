@@ -1,18 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <script>
-       function getComputerChoice() {
-       let strings = ["Rock", "Paper", "Scissors"];
-       let randomIndex = Math.floor(Math.random() * strings.length);
-       return strings[randomIndex];
-       }
-       console.log(getComputerChoice());
+        function getComputerChoice() {
+            let strings = ["Rock", "Paper", "Scissors"];
+            let randomIndex = Math.floor(Math.random() * strings.length);
+            return strings[randomIndex];
+        }
+
+
+        function checkWinner(playerSelection, computerSelection) {
+            if (playerSelection == computerSelection) {
+                return "tie"
+            } else if ((playerSelection == "Rock"  && computerSelection == "Scissors")
+                || (playerSelection == "Paper"  && computerSelection == "Rock")
+                || (playerSelection == "Scissors"  && computerSelection == "Paper")) {
+                return "player"
+            } else {
+                return "computer";
+            }
+        }
+
+        function playRound(playerSelection, computerSelection) {
+            const result = checkWinner(playerSelection, computerSelection);
+            if (result == "tie") {
+                return "Tie!"
+            } else if (result == "player") {
+                return `You win! ${playerSelection} beats ${computerSelection}!`
+            } else (result == "computer")
+            return `Computer wins! ${computerSelection} beats ${playerSelection}!`
+        }
+
+        const playerSelection = "Paper";
+        const computerSelection = getComputerChoice();
+
+        function game() {
+            let playerScore = 0;
+            let computerScore = 0;
+
+            for (let round = 1; round <= 5; round++) {
+                const playerSelection = "Paper";
+                const computerSelection = getComputerChoice();
+                const result = playRound(playerSelection, computerSelection);
+
+                if (result === "Tie!") {
+                    console.log("Round " + round + ": " + result);
+                } else if (result.includes("You win!")) {
+                    playerScore++;
+                    console.log("Round " + round + ": " + result);
+                } else {
+                    computerScore++;
+                    console.log("Round " + round + ": " + result);
+                }
+            }
+
+            if (playerScore > computerScore) {
+                console.log("You win the game!");
+            } else if (playerScore < computerScore) {
+                console.log("Computer wins the game!");
+            } else {
+                console.log("It's a tie! The game ends in a draw.");
+            }
+        }
+
+        game();
+
     </script>
 </body>
+
 </html>
